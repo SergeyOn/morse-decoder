@@ -39,11 +39,11 @@ const MORSE_TABLE = {
 
 const reverse = str => str.split('').reverse().join(''); //helper function
 
-function decode(expr) {
+function decode(expr, decodeQty = 10) {
     let result = ''; // result sentence ex: hello world
-    for (let i = 9, length = expr.length; i < length; i += 10) { // cycle for 10 symbols = 1 letter
+    for (let i = decodeQty - 1, length = expr.length; i < length; i += decodeQty) { // cycle for 10 symbols = 1 letter
         let letter = ''; // letter in code ex: ..-., but in reverse order
-        for (let j = i; j !== i-10; j -= 2 ) { //cycle code from the end
+        for (let j = i; j !== i-decodeQty; j -= 2 ) { //cycle code from the end
             if (expr[j-1] === '0' || expr[j] === '*') break; // 00 or 'space'
            
             if (expr[j] === '1' && expr[j-1] === '1' ) {
